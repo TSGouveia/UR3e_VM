@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-d386fcc2658f2b3d8c3e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "piece_juggler",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "basic_piece_juggler::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-basic_piece_juggler-cef3a439fcc3caa6a2d9.json",
+					"name" : "basic_piece_juggler",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "piece_juggler_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-piece_juggler_uninstall-6c781c94cc9740d92372.json",
+					"name" : "piece_juggler_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "random_piece_juggler::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-random_piece_juggler-fb8a137354b4fa9e96c3.json",
+					"name" : "random_piece_juggler",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-eea54940fdd1b023ce77.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/drros2ur3/ros2_ws/build/piece_juggler",
+		"source" : "/home/drros2ur3/ros2_ws/src/piece_juggler"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

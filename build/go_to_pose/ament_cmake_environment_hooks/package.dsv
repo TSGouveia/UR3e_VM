@@ -1,0 +1,4 @@
+source;share/go_to_pose/local_setup.bash
+source;share/go_to_pose/local_setup.dsv
+source;share/go_to_pose/local_setup.sh
+source;share/go_to_pose/local_setup.zsh

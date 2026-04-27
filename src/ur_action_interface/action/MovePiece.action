@@ -1,0 +1,18 @@
+# Goal: move a piece from one slot to another
+int32 from_m
+int32 from_r
+int32 from_c
+int32 to_m
+int32 to_r
+int32 to_c
+float32 speed
+
+---
+# Result
+bool success
+string message
+
+---
+# Feedback
+string phase
+float32 progress

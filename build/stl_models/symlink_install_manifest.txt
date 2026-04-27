@@ -1,0 +1,17 @@
+/home/drros2ur3/ros2_ws/install/stl_models/lib/stl_models/enviroment_collision
+/home/drros2ur3/ros2_ws/install/stl_models/lib/stl_models/gripper_collision
+/home/drros2ur3/ros2_ws/install/stl_models/share/ament_index/resource_index/package_run_dependencies/stl_models
+/home/drros2ur3/ros2_ws/install/stl_models/share/ament_index/resource_index/parent_prefix_path/stl_models
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/environment/ament_prefix_path.sh
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/environment/ament_prefix_path.dsv
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/environment/path.sh
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/environment/path.dsv
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/local_setup.bash
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/local_setup.sh
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/local_setup.zsh
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/local_setup.dsv
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/package.dsv
+/home/drros2ur3/ros2_ws/install/stl_models/share/ament_index/resource_index/packages/stl_models
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/cmake/stl_modelsConfig.cmake
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/cmake/stl_modelsConfig-version.cmake
+/home/drros2ur3/ros2_ws/install/stl_models/share/stl_models/package.xml

@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-fa348b8931125c0ba11a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "stl_models",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "enviroment_collision::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-enviroment_collision-f2fbf4a427dc8b8688c5.json",
+					"name" : "enviroment_collision",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gripper_collision::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gripper_collision-ec69af976eb51ff1392b.json",
+					"name" : "gripper_collision",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stl_models_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stl_models_uninstall-157438b5b3d668e366a2.json",
+					"name" : "stl_models_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-9cd23bf03c1e9d6a21be.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/drros2ur3/ros2_ws/build/stl_models",
+		"source" : "/home/drros2ur3/ros2_ws/src/stl_models"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

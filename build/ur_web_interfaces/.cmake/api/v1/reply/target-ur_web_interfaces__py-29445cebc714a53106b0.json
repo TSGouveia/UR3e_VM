@@ -1,0 +1,79 @@
+{
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target"
+		],
+		"files" : 
+		[
+			"/home/drros2ur3/ros2_ws/build/ur_web_interfaces/ur_web_interfaces__py/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "ur_web_interfaces::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "ur_web_interfaces__py::@3a3bc66e793a7e84a7b3",
+	"name" : "ur_web_interfaces__py",
+	"paths" : 
+	{
+		"build" : "ur_web_interfaces__py",
+		"source" : "/home/drros2ur3/ros2_ws/build/ur_web_interfaces/ur_web_interfaces__py"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "/home/drros2ur3/ros2_ws/build/ur_web_interfaces/ur_web_interfaces__py/CMakeFiles/ur_web_interfaces__py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/drros2ur3/ros2_ws/build/ur_web_interfaces/ur_web_interfaces__py/CMakeFiles/ur_web_interfaces__py.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/drros2ur3/ros2_ws/build/ur_web_interfaces/rosidl_generator_py/ur_web_interfaces/_ur_web_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}
