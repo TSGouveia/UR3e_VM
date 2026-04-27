@@ -11,12 +11,16 @@ WS_SETUP="$HOME/ros2_ws/install/local_setup.bash"
 PY_SERVER_DIR="$HOME/ros2_ws/src/py_server"
 UI_DIR="$HOME/ros2_ws/src/robot-ui"
 
-UI_HOST_IP="192.168.2.100"
+UI_HOST_IP=$(hostname -I | awk '{print $1}')
 UI_PORT="5173"
 BROWSER_URL="http://${UI_HOST_IP}:${UI_PORT}/"
 
 SESSION="ur3e_stack"
 SCRIPTDIR="/tmp/${SESSION}_scripts"
+
+API_PORT="8000"
+API_BASE_URL="http://${UI_HOST_IP}:${API_PORT}"
+BROWSER_URL="http://${UI_HOST_IP}:${UI_PORT}/"
 
 command -v tmux >/dev/null 2>&1 || { echo "ERROR: tmux not found. Install: sudo apt install -y tmux"; exit 1; }
 command -v ss   >/dev/null 2>&1 || { echo "ERROR: ss not found. Install: sudo apt install -y iproute2"; exit 1; }
@@ -191,28 +195,32 @@ echo "[pyserver] PWD after cd: \$PWD"
 # If you use a venv, uncomment and set the correct path:
 # source "$PY_SERVER_DIR/.venv/bin/activate"
 
-uvicorn server:app --host 0.0.0.0 --port 8000
+uvicorn server:app --host 0.0.0.0 --port $API_PORT
 EOF
 chmod +x "$SCRIPTDIR/pyserver.sh"
 
 # 5) UI (also no exec)
 cat > "$SCRIPTDIR/ui.sh" <<EOF
 #!/usr/bin/env bash
-set -e
-set -o pipefail
 source "$SCRIPTDIR/common.sh"
 trap die_to_shell ERR
-wait_for_exact_node /web_action_client 300
+
+wait_for_exact_node /move_piece_server 300
+
+# Injeta a variável de ambiente para o Vite ler
+export VITE_API_BASE_URL="$API_BASE_URL"
 
 cd "$UI_DIR"
-echo "[ui] PWD=\$PWD"
-npm run dev -- --host 0.0.0.0
+echo "[ui] API Base definida para: \$VITE_API_BASE_URL"
+
+# Se usares o Vite, ele deteta variáveis que comecem por VITE_
+npm run dev -- --host 0.0.0.0 --port $UI_PORT
 EOF
-chmod +x "$SCRIPTDIR/ui.sh"
 
 # ---- Fechar processos antigos (opcional, mas recomendado) ----
 # Podes matar processos antigos se necessário, ex: pkill -f ros2
 
+chmod +x "$SCRIPTDIR"/*.sh
 echo "A abrir janelas de terminal independentes..."
 
 # 1. Driver
