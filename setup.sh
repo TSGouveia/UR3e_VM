@@ -7,87 +7,95 @@ UI_DIR="$WS_DIR/src/robot-ui"
 
 echo "🚀 [Sincronização] Iniciando Reconstrução do Ambiente..."
 
-# --- 0. Limpeza de conflitos e Atualização de Repositórios ---
-echo "🧹 [0/8] Limpando conflitos e atualizando APT..."
-sudo dpkg --purge --force-all libnode-dev nodejs-dev 2>/dev/null || true
+# --- 0. Limpeza inicial para evitar conflitos de rede/Node ---
+echo "🧹 [0/9] Limpando pacotes antigos..."
+sudo apt-get remove --purge -y nodejs npm libnode-dev || true
+sudo apt-get autoremove -y
+
+# --- 1. Set locale (Comandos Oficiais) ---
+echo "🌍 [1/9] Configurando Locales..."
+locale  # check for UTF-8
+sudo apt update && sudo apt install locales -y
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+locale  # verify settings
+
+# --- 2. Setup Sources (Comandos Oficiais) ---
+echo "📦 [2/9] Configurando Repositórios..."
+sudo apt install software-properties-common -y
+sudo add-apt-repository universe -y
+
+sudo apt update && sudo apt install curl -y
+export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F'"' '{print $4}')
+curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo ${UBUNTU_CODENAME:-${VERSION_CODENAME}})_all.deb"
+sudo dpkg -i /tmp/ros2-apt-source.deb
+
+# --- 3. Install ROS 2 packages (Comandos Oficiais) ---
+echo "🤖 [3/9] Instalando ROS 2 Humble..."
 sudo apt update
+sudo apt upgrade -y
+sudo apt install -y ros-humble-desktop
+sudo apt install -y ros-humble-ros-base
+sudo apt install -y ros-dev-tools
 
-# --- 1. Instalação de Dependências de Sistema e ROS 2 Control ---
-echo "📦 [1/8] Instalando ferramentas de sistema e ROS2 Control..."
+# --- 4. Drivers e Dependências Específicas (UR e MoveIt) ---
+echo "🦾 [4/9] Instalando drivers Universal Robots e MoveIt..."
 sudo apt install -y \
-    tmux \
-    python3-pip \
-    iproute2 \
-    gnome-terminal \
-    nodejs \
-    npm \
+    ros-humble-ur \
+    ros-humble-ur-msgs \
+    ros-humble-moveit \
+    ros-humble-moveit-visual-tools \
     ros-humble-ros2controlcli \
-    ros-humble-controller-manager
+    ros-humble-controller-manager \
+    tmux python3-pip iproute2 gnome-terminal
 
-# --- 2. Atualizar Node.js para v20 (Essencial para o Vite) ---
-echo "🔄 [2/8] Verificando versão do Node.js..."
-if [[ $(node -v 2>/dev/null) != v20* ]]; then
-    echo "Instalando NodeSource v20 LTS..."
-    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-else
-    echo "✅ Node.js já está na versão correta."
-fi
+# --- 5. Node.js v20 (Essencial para o Vite) ---
+echo "🔄 [5/9] Configurando NodeSource v20..."
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
-# --- 3. Instalar dependências Python ---
-echo "🐍 [3/8] Instalando Uvicorn e FastAPI..."
-# Instalamos como root para garantir que os binários fiquem no PATH global
-sudo pip3 install uvicorn fastapi
+# --- 6. Dependências Python ---
+echo "🐍 [6/9] Instalando Uvicorn e FastAPI..."
+sudo pip3 install uvicorn fastapi --break-system-packages || sudo pip3 install uvicorn fastapi
 
-# --- 4. Configuração do Workspace e Git ---
-echo "📂 [4/8] Sincronizando código do GitHub..."
+# --- 7. Sincronização do Workspace e Git ---
+echo "📂 [7/9] Sincronizando código do GitHub..."
 mkdir -p "$WS_DIR"
 cd "$WS_DIR"
 
 if [ ! -d ".git" ]; then
-    echo "🆕 Inicializando repositório no root..."
     git init .
     git remote add origin "$REPO_URL"
     git fetch
     git checkout -t origin/main -f
 else
-    echo "📥 Atualizando código existente..."
     git pull origin main
 fi
 
-# --- 5. Instalação da UI (Vite) ---
-echo "🌐 [5/8] Configurando dependências do Frontend..."
+# --- 8. UI e Compilação ---
+echo "🛠️ [8/9] Configurando UI e Compilando..."
 if [ -d "$UI_DIR" ]; then
     cd "$UI_DIR"
     rm -rf node_modules package-lock.json
     npm install
     sudo npm install -g vite
     cd "$WS_DIR"
-else
-    echo "❌ ERRO: A pasta $UI_DIR não existe!"
 fi
 
-# --- 6. Permissões de Execução ---
-echo "🔐 [6/8] Ajustando permissões dos scripts..."
-find "$WS_DIR/src" -name "*.sh" -exec chmod +x {} +
-
-# --- 7. Compilação ROS 2 ---
-echo "🛠️ [7/8] Limpando e Compilando ambiente ROS2..."
+find "$WS_DIR" -name "*.sh" -exec chmod +x {} +
+[ -f "startproject" ] && chmod +x startproject
 rm -rf build/ install/ log/
-# Importante fazer o source do ROS antes de compilar
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 
-# --- 8. Persistência no Bashrc ---
-echo "📝 [8/8] Configurando Bashrc..."
+# --- 9. Persistência ---
+echo "📝 [9/9] Configurando Bashrc..."
 if ! grep -q "ros2_ws/install/setup.bash" ~/.bashrc; then
     echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
     echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
-    echo "✅ Configurações adicionadas ao ~/.bashrc"
 fi
 
 echo "=================================================="
-echo "✅ SETUP CONCLUÍDO COM SUCESSO!"
-echo "=================================================="
-echo "⚠️  ATENÇÃO: Fecha este terminal e abre um NOVO"
+echo "✅ SETUP COMPLETO COM DRIVERS UR E DOC OFICIAL!"
 echo "=================================================="
