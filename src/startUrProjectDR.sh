@@ -8,8 +8,8 @@ KINEMATICS_FILE="$HOME/ros2_ws/src/config/my_robot_calibration.yaml"
 ROS_SETUP="/opt/ros/humble/setup.bash"
 WS_SETUP="$HOME/ros2_ws/install/local_setup.bash"
 
-PY_SERVER_DIR="$HOME/pyserver"
-UI_DIR="$HOME/robot-ui"
+PY_SERVER_DIR="$HOME/ros2_ws/src/py_server"
+UI_DIR="$HOME/ros2_ws/src/robot-ui"
 
 UI_HOST_IP="192.168.2.100"
 UI_PORT="5173"
