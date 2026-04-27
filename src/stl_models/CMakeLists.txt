@@ -33,5 +33,10 @@ install(TARGETS
           enviroment_collision
           gripper_collision  
           DESTINATION lib/${PROJECT_NAME})
+          
+install(
+  DIRECTORY meshes
+  DESTINATION share/${PROJECT_NAME}
+)
 
 ament_package()

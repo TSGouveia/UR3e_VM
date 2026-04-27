@@ -1,5 +1,5 @@
 CMakeFiles/gripper_collision.dir/src/gripper.cpp.o: \
- /home/drros2ur3/ros2_ws/src/stl_models/src/gripper.cpp \
+ /home/rics/ros2_ws/src/stl_models/src/gripper.cpp \
  /usr/include/stdc-predef.h \
  /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp \
  /usr/include/c++/11/csignal \

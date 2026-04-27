@@ -1,1 +1,0 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/home/drros2ur3/ros2_ws/build/stl_models/enviroment_collision" "/home/drros2ur3/ros2_ws/build/stl_models/gripper_collision" "TARGETS" "enviroment_collision" "gripper_collision" "DESTINATION" "lib/stl_models")

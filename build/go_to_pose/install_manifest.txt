@@ -1,0 +1,17 @@
+/home/rics/ros2_ws/install/go_to_pose/lib/go_to_pose/go_to_pose_adapted
+/home/rics/ros2_ws/install/go_to_pose/lib/go_to_pose/go_to_all
+/home/rics/ros2_ws/install/go_to_pose/share/ament_index/resource_index/package_run_dependencies/go_to_pose
+/home/rics/ros2_ws/install/go_to_pose/share/ament_index/resource_index/parent_prefix_path/go_to_pose
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/environment/ament_prefix_path.sh
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/environment/ament_prefix_path.dsv
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/environment/path.sh
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/environment/path.dsv
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/local_setup.bash
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/local_setup.sh
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/local_setup.zsh
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/local_setup.dsv
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/package.dsv
+/home/rics/ros2_ws/install/go_to_pose/share/ament_index/resource_index/packages/go_to_pose
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/cmake/go_to_poseConfig.cmake
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/cmake/go_to_poseConfig-version.cmake
+/home/rics/ros2_ws/install/go_to_pose/share/go_to_pose/package.xml

@@ -1,1 +1,0 @@
-ament_cmake_symlink_install_targets("TARGET_FILES" "/home/drros2ur3/ros2_ws/build/go_to_pose/go_to_pose_adapted" "/home/drros2ur3/ros2_ws/build/go_to_pose/go_to_all" "TARGETS" "go_to_pose_adapted" "go_to_all" "DESTINATION" "lib/go_to_pose")
