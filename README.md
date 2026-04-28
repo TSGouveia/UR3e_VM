@@ -45,6 +45,6 @@ Com o cabo de rede ligado ao router do robô e a configuração acima concluída
 
 ```bash
 # No diretório ros2_ws/src
-chmod +x startproject
-./startproject
+chmod +x startUrProjectDR.sh
+./startUrProjectDR.sh
 ```
