@@ -21,6 +21,36 @@ SCRIPTDIR="/tmp/${SESSION}_scripts"
 API_PORT="8000"
 API_BASE_URL="http://${UI_HOST_IP}:${API_PORT}"
 BROWSER_URL="http://${UI_HOST_IP}:${UI_PORT}/"
+# --- INPUTS DO UTILIZADOR ---
+
+# 1. Pergunta sobre o ROS Domain ID
+read -p "Introduz o ROS_DOMAIN_ID (ex: 42, ou prime Enter para usar 0): " user_domain
+export ROS_DOMAIN_ID=${user_domain:-0}
+echo "Usando ROS_DOMAIN_ID=$ROS_DOMAIN_ID"
+
+# 2. Pergunta sobre a Limpeza
+echo -e "\n⚠️  Desejas realizar uma limpeza nuclear (parar processos, limpar portas e memória partilhada)? (s/n)"
+read -p "> " confirm_clean
+
+if [[ "$confirm_clean" == "s" || "$confirm_clean" == "S" ]]; then
+    echo "Limpando processos antigos..."
+    pkill -9 -f "ros2" || true
+    pkill -9 -f "controller_manager" || true
+    pkill -9 -f "uvicorn" || true
+    pkill -9 -f "node" || true
+    
+    echo "Libertando portas de rede do robô..."
+    sudo fuser -k 50001/tcp 50002/tcp 50003/tcp 50004/tcp 30004/tcp 2>/dev/null || true
+
+    echo "Limpando memória partilhada e daemon..."
+    sudo rm -rf /dev/shm/fastrtps* /dev/shm/ROS2* 2>/dev/null || true
+    ros2 daemon stop || true
+    ros2 daemon start || true
+    rm -f /tmp/stack_ready.txt
+    echo "Limpeza concluída."
+else
+    echo "A saltar limpeza. Iniciando por cima dos processos existentes."
+fi
 
 command -v tmux >/dev/null 2>&1 || { echo "ERROR: tmux not found. Install: sudo apt install -y tmux"; exit 1; }
 command -v ss   >/dev/null 2>&1 || { echo "ERROR: ss not found. Install: sudo apt install -y iproute2"; exit 1; }
@@ -113,20 +143,19 @@ chmod +x "$SCRIPTDIR/common.sh"
 # 1) UR driver
 cat > "$SCRIPTDIR/driver.sh" <<EOF
 #!/usr/bin/env bash
-set -e
-set -o pipefail
 source "$SCRIPTDIR/common.sh"
 trap die_to_shell ERR
-
 source "$ROS_SETUP"
-echo "[driver] ros2=\$(command -v ros2 || echo NOT_FOUND)"
-echo "[driver] Starting UR3e robot driver..."
+
+echo "[1/5] Iniciando Driver UR3e (Modo de espera)..."
 ros2 launch ur_robot_driver ur_control.launch.py \
   ur_type:=ur3e \
   robot_ip:=${ROBOT_IP} \
   kinematics_params_file:="${KINEMATICS_FILE}" \
   launch_rviz:=false \
-  use_fake_hardware:=false
+  use_fake_hardware:=false \
+  initial_joint_controller:="scaled_joint_trajectory_controller" \
+  activate_joint_controller:=true
 EOF
 chmod +x "$SCRIPTDIR/driver.sh"
 
