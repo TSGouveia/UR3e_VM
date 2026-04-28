@@ -30,13 +30,6 @@ Após a instalação do software, segue estes passos para estabelecer a ligaçã
    * Ativa a opção **"Replicate physical network connection state"**.
 3. Liga a VM novamente.
 
-### 2. Configurar IP Estático no Ubuntu
-Dentro da VM, acede às Definições de Rede e configura o IPv4 manualmente:
-* **Método:** Manual
-* **Endereço (Address):** 192.168.2.X (onde X é um número à tua escolha, ex: 192.168.2.100)
-* **Máscara (Netmask):** 255.255.0.0
-* **Gateway:** (Deixar em branco)
-
 ---
 
 ## 🏎️ Execução do Projeto
