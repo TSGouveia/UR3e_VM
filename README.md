@@ -8,19 +8,7 @@ Este repositório contém as instruções e scripts necessários para configurar
 
 Nesta primeira fase, a VM deve manter o acesso total à internet (modo NAT) para descarregar todas as dependências.
 
-### 1. Criar a Máquina Virtual
-* **OS:** Ubuntu 22.04 LTS (Jammy Jellyfish).
-* **Plataforma:** VirtualBox ou VMware.
-
-### 2. Instalação do ROS 2 Humble
-Siga o guia oficial para instalar a versão desktop via pacotes Debian:
-* 🔗 [ROS 2 Humble Installation Guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)
-
-### 3. Instalação do UR Driver
-O driver é necessário para a interface de controlo do braço:
-* 🔗 [Universal Robots ROS 2 Driver](https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver)
-
-### 4. Configuração do Workspace (Setup)
+### Configuração do Workspace (Setup)
 Execute o script de automação para preparar o ambiente:
 
 ```bash
