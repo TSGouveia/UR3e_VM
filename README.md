@@ -44,7 +44,7 @@ Dentro da VM, acede às Definições de Rede e configura o IPv4 manualmente:
 Com o cabo de rede ligado ao router do robô e a configuração acima concluída, corre o comando de arranque:
 
 ```bash
-# No diretório ros2_ws/src
+cd ~/ros2_ws/src
 chmod +x startUrProjectDR.sh
 ./startUrProjectDR.sh
 ```
